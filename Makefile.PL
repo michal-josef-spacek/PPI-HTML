@@ -7,6 +7,7 @@ requires       'PPI'          => '0.990';
 requires       'Params::Util' => '0.05';
 test_requires 'File::Spec'   => '0.80';
 test_requires 'Test::More'   => '0.47';
+tests_recursive;
 install_script 'bin/ppi2html';
 
 WriteAll;
