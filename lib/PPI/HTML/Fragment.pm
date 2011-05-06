@@ -1,5 +1,26 @@
 package PPI::HTML::Fragment;
 
+=pod
+
+=head1 NAME
+
+PPI::HTML::Fragment - Generate HTML for fragment.
+
+=head1 SYNOPSIS
+
+ use PPI::HTML::Fragment;
+ my $fragment = PPI::HTML::Fragment->new('string', 'css');
+ my $string = $fragment->string;
+ my $css = $fragment->css;
+ my $ends_line = $fragment->ends_line;
+ my $html_string = $fragment->html;
+ $fragment->concat('concat_string');
+ $fragment->clear;
+
+=head1 METHODS
+
+=cut
+
 # A HTML fragment object is a small object that contains a string due to
 # become HTML content, and a simple rule for it's display, such as a class
 # name.
@@ -18,6 +39,13 @@ BEGIN {
 #####################################################################
 # Constructor and Accessors
 
+=head2 new $string $css
+
+The C<new> constructor takes a fragment $string and $css.
+Returns a new L<PPI::HTML::Fragment> object.
+
+=cut
+
 sub new {
 	my $class  = ref $_[0] ? ref shift : shift;
 	my $string = defined $_[0] ? shift : return undef;
@@ -32,7 +60,20 @@ sub new {
 	$self;
 }
 
+=head2 string
+
+The C<string> accessor returns string of fragment.
+
+=cut
+
 sub string { $_[0]->{string} }
+
+=head2 css
+
+The C<css> accessor returns css for fragment.
+
+=cut
+
 sub css    { $_[0]->{css}    }
 
 
@@ -42,8 +83,20 @@ sub css    { $_[0]->{css}    }
 #####################################################################
 # Main Methods
 
+=head2 ends_line
+
+The C<ends_line> accessor returns true if string in fragment ends by newline.
+
+=cut
+
 # Does the segment end with a newline?
 sub ends_line { $_[0]->string =~ /\n$/ }
+
+=head2 html
+
+The C<html> accessor returns HTML code for fragment.
+
+=cut
 
 # Render to HTML
 sub html {
@@ -53,12 +106,24 @@ sub html {
 	$self->_tagpair( 'span', { class => $self->css }, $html );
 }
 
+=head2 concat $string
+
+The C<concat> accessor add $string to object string.
+
+=cut
+
 sub concat {
 	my $self = shift;
 	my $string = defined $_[0] ? shift : return undef;
 	$self->{string} .= $string;
 	1;
 }
+
+=head2 clear
+
+The C<clear> accessor clears css in object.
+
+=cut
 
 sub clear {
 	my $self = shift;
