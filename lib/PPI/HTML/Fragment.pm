@@ -153,10 +153,11 @@ sub _tagpair {
 	my $self  = shift;
 	my $tag   = shift;
 	my %attr  = %{shift()};
+	my $html  = shift;
 	my $start = join( ' ', $tag,
 		map { defined $attr{$_} ? qq($_="$attr{$_}") : "$_" }
 		sort keys %attr );
-	"<$start>" . join('', @_) . "</$tag>";
+	"<$start>" . $html . "</$tag>";
 }
 
 1;
