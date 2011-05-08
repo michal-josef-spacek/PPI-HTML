@@ -140,7 +140,7 @@ sub clear {
 
 # Embedding some HTML stuff until I find a suitably lightweight dependency
 sub _escape {
-	my $html = defined $_[1] ? "$_[1]" : return '';
+	my $html = $_[1];
 	$html =~ s/&/&amp;/g;
 	$html =~ s/</&lt;/g;
 	$html =~ s/>/&gt;/g;
