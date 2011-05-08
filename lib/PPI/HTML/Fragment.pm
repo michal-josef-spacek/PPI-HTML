@@ -150,7 +150,7 @@ sub _escape {
 }
 
 sub _tagpair {
-	my $class = shift;
+	my $self  = shift;
 	my $tag   = shift;
 	my %attr  = %{shift()};
 	my $start = join( ' ', $tag,
