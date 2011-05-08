@@ -151,8 +151,8 @@ sub _escape {
 
 sub _tagpair {
 	my $class = shift;
-	my $tag   = shift or return undef;
-	my %attr  = ref $_[0] eq 'HASH' ? %{shift()} : ();
+	my $tag   = shift;
+	my %attr  = %{shift()};
 	my $start = join( ' ', $tag,
 		map { defined $attr{$_} ? qq($_="$attr{$_}") : "$_" }
 		sort keys %attr );
